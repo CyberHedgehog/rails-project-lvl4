@@ -1,0 +1,4 @@
+- alert_class = flash.notice ? 'success' : 'danger'
+div class="alert alert-#{alert_class} alert-dismissible fade show" role="alert"
+  span = flash.notice || flash.alert
+  button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"

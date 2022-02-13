@@ -1,0 +1,22 @@
+.d-flex.flex-wrap.align-items-center.py-2.border-bottom
+  .navbar.navbar-expand-md.navbar-light.me-auto
+    = link_to t('title'), root_path, class: 'navbar-brand me-md-4'
+    div id='navbarToggler' class='collapse navbar-collapse'
+      ul class='nav nav-pills flex-grow-1 navbar-nav me-auto'
+        li.nav-item.me-2
+          = link_to t('home.title'), root_path, class: 'nav-link text-dark'
+        / - if current_user
+        /   li.nav-item.me-2
+        /     = link_to t('bulletins.my_bulletins'), profile_path, class: 'nav-link text-dark'
+        /   li.nav-item.me-2
+        /     = link_to t('bulletins.create'), new_bulletin_path, class: 'nav-link text-dark'
+  / ul.nav.nav-pills
+  /   - if current_user&.admin?
+  /     li.nav-item.me-2
+  /       = link_to t('admin'), admin_root_path, class: 'nav-link text-dark'
+  /   - if current_user
+  /     li.nav-item.me-2
+  /       = link_to t('session.logout'), session_path(session.id), method: :delete, class: 'nav-link text-dark'
+  /   - else
+  /     li.nav-item.me-2
+  /       = link_to t('session.signin'), auth_request_path(:github), method: :post, class: 'nav-link text-dark'
