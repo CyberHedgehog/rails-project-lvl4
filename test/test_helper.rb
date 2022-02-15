@@ -22,7 +22,7 @@ class ActiveSupport::TestCase
         info: {
           email: user[:email],
           name: user[:name],
-          nickname: user[:nickname],
+          nickname: user[:nickname]
         },
         credentials: { token: Faker::Internet.uuid }
       }
