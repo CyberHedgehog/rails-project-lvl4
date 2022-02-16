@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      repository:
+        one: Repository
+        other: Repositories
+    attributes:
+      repository:
+        name: Name
+        full_name: Github
+        language: Language

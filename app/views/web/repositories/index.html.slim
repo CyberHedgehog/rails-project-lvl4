@@ -1,0 +1,15 @@
+.mb-4
+  h2 = t('activerecord.models.repository', count: 2)
+  table.table
+    thead
+      tr
+      tr
+        th scope="col" = t('activerecor.attributes.repository.name')
+        th scope="col" = t('activerecor.attributes.repository.language')
+        th scope="col" = t('activerecor.attributes.repository.created_at')
+    tbody
+      - @repositories.each do |repository|
+        tr
+          td = link_to repository.name, repository_path(repository)
+          td = repository.language
+          td = repository.created_at

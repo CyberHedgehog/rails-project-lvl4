@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   scope module: :web do
     resources :sessions, only: :destroy
     root to: 'home#index'
+    resources :repositories
   end
 end

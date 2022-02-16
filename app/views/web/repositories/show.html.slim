@@ -1,0 +1,8 @@
+.mb-4
+  h2 = @repository.full_name
+p
+  strong.me-2 = t('activerecord.attributes.repository.name')
+  = @repository.name
+p
+  strong.me-2 = t('activerecord.attributes.repository.language')
+  = @repository.language
