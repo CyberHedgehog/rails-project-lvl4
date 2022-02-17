@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Web::RepositoriesController < Web::ApplicationController
+  before_action :authorize_user
   def index
     @repositories = current_user.repositories
   end
@@ -14,9 +15,9 @@ class Web::RepositoriesController < Web::ApplicationController
     repo_data = client.repository(repository_params[:full_name])
     repository = Repository.new(
       {
-        full_name: repo_data.full_name,
-        name: repo_data.name,
-        language: repo_data.language,
+        full_name: repo_data['full_name'],
+        name: repo_data['name'],
+        language: repo_data['language'],
         user_id: current_user.id
       }
     )
@@ -31,7 +32,7 @@ class Web::RepositoriesController < Web::ApplicationController
     @repository = Repository.find(params[:id])
   end
 
-  protected
+  private
 
   def repository_params
     params.require(:repository).permit(:full_name)
@@ -39,5 +40,9 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def client
     @client = Octokit::Client.new(access_token: current_user.token)
+  end
+
+  def authorize_user
+    authorize :repository
   end
 end

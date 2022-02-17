@@ -35,6 +35,7 @@ gem 'omniauth'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-rails_csrf_protection'
 gem 'pg'
+gem 'pundit'
 gem 'rails-i18n'
 gem 'rollbar'
 gem 'simple_form'
@@ -68,6 +69,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

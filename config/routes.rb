@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   scope module: :web do
     resources :sessions, only: :destroy
     root to: 'home#index'
-    resources :repositories
+    resources :repositories, only: %i[index show new create]
   end
 end

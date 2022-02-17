@@ -37,3 +37,6 @@ en:
   session:
     signin: 'Sign in'
     logout: 'Logout'
+  messages:
+    not_authorized: 'User not authorized'
+    successfull_login: Successfull login 
