@@ -24,11 +24,13 @@ ActiveRecord::Schema.define(version: 2022_02_21_191313) do
 
   create_table "repository_checks", force: :cascade do |t|
     t.string "state"
-    t.string "reference"
+    t.string "commit"
     t.boolean "check_passed"
     t.string "result"
+    t.integer "repository_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["repository_id"], name: "index_repository_checks_on_repository_id"
   end
 
   create_table "users", force: :cascade do |t|

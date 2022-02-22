@@ -2,12 +2,12 @@
 
 one:
   state: MyString
-  reference: MyString
+  commit: MyString
   check_passed: false
   result: MyString
 
 two:
   state: MyString
-  reference: MyString
+  commit: MyString
   check_passed: false
   result: MyString

@@ -1,0 +1,13 @@
+.mb-4
+  h2 = "Check ##{@check.id}"
+table.table
+  tbody
+    tr
+      td = t('activerecord.attributes.check.created_at')
+      td = @check.created_at
+    tr
+      td = t('activerecord.attributes.check.status')
+      td = @check.state
+    tr
+      td = t('activerecord.attributes.check.check_passed')
+      td = @check.check_passed
