@@ -5,7 +5,9 @@ class Web::ChecksController < Web::ApplicationController
     repo = Repository.find_by(id: params[:repository_id])
     sha = client.refs(repo.full_name).first.object.sha
     check = repo.checks.new(commit: sha)
-    check.save
+    if check.save
+      CheckRepositoryJob.perform_later(check)
+    end
     redirect_to repository_path(repo)
   end
 
