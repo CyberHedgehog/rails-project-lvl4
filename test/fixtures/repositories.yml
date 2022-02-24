@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  full_name: MyString
+  full_name: user/reponame
   language: MyString
   user: one
 
 two:
   name: MyString
-  full_name: MyString
+  full_name: user/reponame
   language: MyString
   user: two
