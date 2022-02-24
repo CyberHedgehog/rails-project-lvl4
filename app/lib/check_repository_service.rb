@@ -14,7 +14,7 @@ class CheckRepositoryService
   end
 
   def check
-    run("npx eslint #{@tmp_dir} --no-eslintrc -f json")
+    run("npx eslint #{@tmp_dir} --no-eslintrc -c #{Rails.root.join('.eslintrc.yml')} -f json")
   end
 
   def remove_tmpdir
