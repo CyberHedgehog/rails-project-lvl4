@@ -5,7 +5,7 @@ class CheckRepositoryJob < ApplicationJob
 
   def perform(check)
     check.check!
-    checker = CheckRepositoryService.new
+    checker = ApplicationContainer['check_repository_service'].new
     client = Octokit::Client.new
     repo_data = client.repository(check.repository.full_name)
     checker.download(repo_data.git_url)

@@ -1,0 +1,18 @@
+hr
+table.table
+  thead
+    tr
+      td = t('check.message')
+      td = t('check.rule')
+      td = t('check.line_column')
+  tbody
+    - JSON.parse(@check.result).each do |item|
+      tr
+        - if item['messages'].any?
+          td colspan='3'
+            = item['filePath'].split('/').drop(3).join('/')
+            - item['messages'].each do |message|
+              tr
+                td = message['message']
+                td = message['ruleId']
+                td = "#{message['line']}:#{message['column']}"

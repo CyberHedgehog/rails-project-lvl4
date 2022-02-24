@@ -11,21 +11,22 @@ table.table
     tr
       td = t('activerecord.attributes.check.check_passed')
       td = @check.check_passed
-hr
-table.table
-  thead
-    tr
-      td = t('check.message')
-      td = t('check.rule')
-      td = t('check.line_column')
-  tbody
-    - JSON.parse(@check.result).each do |item|
+- unless @check.result.empty?
+  hr
+  table.table
+    thead
       tr
-        - if item['messages'].any?
-          td colspan='3'
-            = item['filePath'].split('/').drop(3).join('/')
-            - item['messages'].each do |message|
-              tr
-                td = message['message']
-                td = message['ruleId']
-                td = "#{message['line']}:#{message['column']}"
+        td = t('check.message')
+        td = t('check.rule')
+        td = t('check.line_column')
+    tbody
+      - JSON.parse(@check.result).each do |item|
+        tr
+          - if item['messages'].any?
+            td colspan='3' class='table-secondary'
+              = item['filePath'].split('/').drop(3).join('/')
+              - item['messages'].each do |message|
+                tr
+                  td = message['message']
+                  td = message['ruleId']
+                  td = "#{message['line']}:#{message['column']}"
