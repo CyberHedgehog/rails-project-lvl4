@@ -4,10 +4,11 @@ one:
   state: MyString
   commit: MyString
   check_passed: false
-  result: MyString
+  result: ''
+  repository: one
 
 two:
   state: MyString
   commit: MyString
   check_passed: false
-  result: MyString
+  result: ''
