@@ -9,7 +9,7 @@ class CheckRepositoryJob < ApplicationJob
     client = Octokit::Client.new
     repo_data = client.repository(check.repository.full_name)
     checker.download(repo_data.git_url)
-    check_result, _exit_code = checker.check
+    check_result = checker.check(check.repository.language)
     check_passed = JSON.parse(check_result).empty?
     check.update(result: check_result, check_passed: check_passed)
     check.finish!
