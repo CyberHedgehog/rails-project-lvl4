@@ -22,6 +22,7 @@ class Web::RepositoriesController < Web::ApplicationController
       }
     )
     if repository.save
+      client.create_hook(repository.full_name, 'web', { url: api_checks_url, content_type: 'json' })
       redirect_to repository_path(repository)
     else
       redirect_to repositories_path
