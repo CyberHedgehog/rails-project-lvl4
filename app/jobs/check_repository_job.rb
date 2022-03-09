@@ -12,6 +12,7 @@ class CheckRepositoryJob < ApplicationJob
     check_result = checker.check(check.repository.language)
     check_passed = JSON.parse(check_result).empty?
     check.update(result: check_result, check_passed: check_passed)
+    RepositoryCheckMailer.with(check: check).report_failed_check.deliver_later unless check_passed
     check.finish!
     checker.remove_tmpdir
   end

@@ -1,0 +1,7 @@
+require "test_helper"
+
+class RepositoryCheckMailerTest < ActionMailer::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
+end

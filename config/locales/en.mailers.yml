@@ -1,0 +1,7 @@
+en:
+  mailers:
+    check:
+      subject:
+        failed: Repository check failed
+      body:
+        failed: "Repository %{repository_name} check failed"
