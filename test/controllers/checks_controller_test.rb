@@ -5,8 +5,8 @@ require 'test_helper'
 class ChecksControllerTest < ActionDispatch::IntegrationTest
   setup do
     repo = repositories(:one)
-    @check = JSON.parse(load_fixture('files/commits.json'))
-    stub_request(:get, "https://api.github.com/repos/#{repo.full_name}/commits").to_return(status: 200, body: @check)
+    @commits = JSON.parse(load_fixture('files/commits.json'))
+    stub_request(:get, "https://api.github.com/repos/#{repo.full_name}/commits").to_return(status: 200, body: @commits)
   end
 
   test 'shold create check' do
@@ -15,7 +15,7 @@ class ChecksControllerTest < ActionDispatch::IntegrationTest
 
     sign_in(user)
     post repository_checks_path(repository)
-    assert_equal repository.checks.last.commit, @check[0]['sha']
+    assert_equal repository.checks.last.commit, @commits[0]['sha']
   end
 
   test 'should show check' do
