@@ -12,6 +12,10 @@ class Web::RepositoriesController < Web::ApplicationController
   end
 
   def create
+    if repository_params[:full_name].empty?
+      redirect_to new_repository_path, alert: t('messages.blank_github')
+      return
+    end
     repo_data = client.repository(repository_params[:full_name])
     repository = Repository.new(
       {

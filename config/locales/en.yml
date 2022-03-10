@@ -31,12 +31,15 @@
 
 en:
   home:
-    title: 'Home'
-    welcome: 'Welcome to my project "Github quality"'
-  title: 'Github quality'
+    title: Home
+    welcome: Welcome to my project "Github quality"
+  title: Github quality
   session:
-    signin: 'Sign in'
-    logout: 'Logout'
+    signin: Sign in
+    logout: Logout
   messages:
-    not_authorized: 'User not authorized'
+    not_authorized: User not authorized
     successfull_login: Successfull login 
+    blank_github: Github can not be blank
+  auth:
+    success: Successful login!
