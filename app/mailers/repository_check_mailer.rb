@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RepositoryCheckMailer < ApplicationMailer
   def report_failed_check
     check = params[:check]
