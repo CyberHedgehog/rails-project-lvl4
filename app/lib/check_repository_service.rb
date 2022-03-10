@@ -25,8 +25,8 @@ class CheckRepositoryService
   private
 
   def check_js
-    result, _code = run("npx eslint #{@tmp_dir} --no-eslintrc -c #{Rails.root.join('.eslintrc.yml')} -f json")
-    return '[]' if result.empty?
+    result, code = run("npx eslint #{@tmp_dir} --no-eslintrc -c #{Rails.root.join('.eslintrc.yml')} -f json")
+    return ['[]', code] if result.empty?
 
     parsed_result = JSON.parse(result).map do |item|
       messages = item['messages'].map do |message|
@@ -34,17 +34,17 @@ class CheckRepositoryService
       end
       { file: item['filePath'], messages: messages }
     end
-    JSON.generate(parsed_result)
+    [JSON.generate(parsed_result), code]
   end
 
   def check_ruby
-    result, _code = run("rubocop #{@tmp_dir} --format json")
+    result, code = run("rubocop #{@tmp_dir} --format json")
     parsed_result = JSON.parse(result)['files'].map do |item|
       messages = item['offenses'].map do |offense|
         { rule: offense['cop_name'], message: offense['message'], line: offense['location']['line'], column: offense['location']['column'] }
       end
       { file: item['path'], messages: messages }
     end
-    JSON.generate(parsed_result)
+    [JSON.generate(parsed_result), code]
   end
 end
