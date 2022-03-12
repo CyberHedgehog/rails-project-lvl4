@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Web::ApplicationController < ApplicationController
-  include Auth
+  include AuthConcern
   include Pundit
 
   helper_method :current_user
