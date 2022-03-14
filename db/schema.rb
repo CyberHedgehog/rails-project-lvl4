@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_02_21_191313) do
 
   create_table "repositories", force: :cascade do |t|
+    t.integer "github_id"
     t.string "name"
     t.string "full_name"
     t.string "language"

@@ -6,7 +6,7 @@ class ChecksControllerTest < ActionDispatch::IntegrationTest
   setup do
     repo = repositories(:one)
     @commits = JSON.parse(load_fixture('files/commits.json'))
-    stub_request(:get, "https://api.github.com/repos/#{repo.full_name}/commits").to_return(status: 200, body: @commits)
+    stub_request(:get, "https://api.github.com/repositories/#{repo.github_id}/commits").to_return(status: 200, body: @commits)
   end
 
   test 'shold create check' do

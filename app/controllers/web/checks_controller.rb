@@ -3,7 +3,7 @@
 class Web::ChecksController < Web::ApplicationController
   def create
     repo = Repository.find_by(id: params[:repository_id])
-    sha = client.commits(repo.full_name).first['sha']
+    sha = client.commits(repo.github_id).first['sha']
     check = repo.checks.new(commit: sha)
     if check.save
       CheckRepositoryJob.perform_later(check)

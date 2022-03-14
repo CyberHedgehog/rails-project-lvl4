@@ -19,8 +19,9 @@ class Web::RepositoriesController < Web::ApplicationController
     repo_data = client.repository(repository_params[:full_name])
     repository = Repository.new(
       {
-        full_name: repo_data['full_name'],
+        github_id: repo_data['id'],
         name: repo_data['name'],
+        full_name: repo_data['full_name'],
         language: repo_data['language'],
         user_id: current_user.id
       }

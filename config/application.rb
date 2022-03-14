@@ -20,9 +20,9 @@ module RailsProjectLvl4
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    # unless Rails.env.test?
-    #   config.hosts << ENV['BASE_URL']
-    #   routes.default_url_options = { host: ENV['BASE_URL'] }
-    # end
+    if Rails.env.development?
+      config.hosts << ENV['BASE_URL']
+      routes.default_url_options = { host: ENV['BASE_URL'] }
+    end
   end
 end

@@ -5,7 +5,7 @@ class Api::ChecksController < Api::ApplicationController
   def create
     return if params['commits'].nil?
 
-    repository = Repository.find_by(full_name: params['repository']['full_name'])
+    repository = Repository.find_by(github_id: params['repository']['id'])
     check = repository.checks.create(commit: params['commits'][0]['id'])
     CheckRepositoryJob.perform_later(check)
   end

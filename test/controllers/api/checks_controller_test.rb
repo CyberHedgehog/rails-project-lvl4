@@ -6,7 +6,7 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
   setup do
     repo = repositories(:one)
     @repo_commits = JSON.parse(load_fixture('files/commits.json'))
-    stub_request(:get, "https://api.github.com/repos/#{repo.full_name}/commits").to_return(status: 200, body: @repo_commits)
+    stub_request(:get, "https://api.github.com/repositories/#{repo.github_id}/commits").to_return(status: 200, body: @repo_commits)
   end
 
   test 'hook_test' do
