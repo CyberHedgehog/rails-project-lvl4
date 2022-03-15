@@ -23,5 +23,7 @@ class RepositoriesControllerTest < ActionDispatch::IntegrationTest
   test 'should create' do
     sign_in(users(:one))
     post repositories_path, params: { repository: { full_name: @repo['full_name'] } }
+    new_repository = Repository.find_by(full_name: @repo['full_name'])
+    assert new_repository
   end
 end
