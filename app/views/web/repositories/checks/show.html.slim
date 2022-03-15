@@ -7,7 +7,7 @@ table.table
       td = @check.created_at
     tr
       td = t('activerecord.attributes.check.status')
-      td = @check.state
+      td = @check.aasm_state
     tr
       td = t('activerecord.attributes.check.check_passed')
       td = @check.check_passed

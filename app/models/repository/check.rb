@@ -3,7 +3,7 @@
 class Repository::Check < ApplicationRecord
   include AASM
 
-  aasm column: 'state' do
+  aasm column: 'aasm_state' do
     state :not_checked, initial: true
     state :checking
     state :finished

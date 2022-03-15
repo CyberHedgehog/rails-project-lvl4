@@ -1,14 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  state: MyString
+  aasm_state: MyString
   commit: f68470097dd5088c9bc745bd3cd7f82e8a855116
   check_passed: false
   result: ''
   repository: one
 
 two:
-  state: MyString
+  aasm_state: MyString
   commit: MyString
   check_passed: false
   result: ''
