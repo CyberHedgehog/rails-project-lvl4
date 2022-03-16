@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class AuthControllerTest < ActionDispatch::IntegrationTest
+class Web::AuthControllerTest < ActionDispatch::IntegrationTest
   test 'should sign in' do
     github_user_data = Faker::Omniauth.github
     OmniAuth.config.test_mode = true

@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_191313) do
   end
 
   create_table "repository_checks", force: :cascade do |t|
-    t.string "state"
+    t.string "aasm_state"
     t.string "commit"
     t.boolean "check_passed"
     t.string "result"

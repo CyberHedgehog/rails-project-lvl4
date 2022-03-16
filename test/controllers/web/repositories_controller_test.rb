@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class RepositoriesControllerTest < ActionDispatch::IntegrationTest
+class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @repo = JSON.parse(load_fixture('files/repo.json'))
     stub_request(:get, 'https://api.github.com/user/repos').to_return(status: 200, body: [@repo])
@@ -23,5 +23,7 @@ class RepositoriesControllerTest < ActionDispatch::IntegrationTest
   test 'should create' do
     sign_in(users(:one))
     post repositories_path, params: { repository: { full_name: @repo['full_name'] } }
+    new_repository = Repository.find_by(full_name: @repo['full_name'])
+    assert new_repository
   end
 end

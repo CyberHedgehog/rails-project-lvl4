@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class ChecksControllerTest < ActionDispatch::IntegrationTest
+class Web::ChecksControllerTest < ActionDispatch::IntegrationTest
   setup do
     repo = repositories(:one)
     @commits = JSON.parse(load_fixture('files/commits.json'))
