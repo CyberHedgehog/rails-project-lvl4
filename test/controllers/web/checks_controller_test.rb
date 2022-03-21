@@ -3,13 +3,10 @@
 require 'test_helper'
 
 class Web::ChecksControllerTest < ActionDispatch::IntegrationTest
-  setup do
+  test 'shold create check' do
     repo = repositories(:one)
     @commits = JSON.parse(load_fixture('files/commits.json'))
     stub_request(:get, "https://api.github.com/repositories/#{repo.github_id}/commits").to_return(status: 200, body: @commits)
-  end
-
-  test 'shold create check' do
     user = users(:one)
     repository = user.repositories.first
 
