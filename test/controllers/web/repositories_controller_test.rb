@@ -14,7 +14,7 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get new' do
-    stub_request(:get, 'https://api.github.com/user/repos').to_return(status: 200, body: [@repo])
+    stub_request(:get, 'https://api.github.com/user/repos?per_page=100').to_return(status: 200, body: [@repo])
 
     sign_in(users(:one))
     get new_repository_path

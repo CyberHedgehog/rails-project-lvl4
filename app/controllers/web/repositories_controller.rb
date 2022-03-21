@@ -8,7 +8,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def new
     @repository = Repository.new
-    @repositories = client.repos.pluck(:full_name)
+    @repositories = client.repos(per_page: 100).pluck(:full_name)
   end
 
   def create
@@ -45,7 +45,7 @@ class Web::RepositoriesController < Web::ApplicationController
   end
 
   def client
-    @client = Octokit::Client.new(access_token: current_user.token)
+    @client = Octokit::Client.new(access_token: current_user.token, per_page: 100)
   end
 
   def authorize_user
