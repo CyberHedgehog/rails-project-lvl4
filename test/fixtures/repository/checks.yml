@@ -3,12 +3,12 @@
 one:
   aasm_state: MyString
   commit: f68470097dd5088c9bc745bd3cd7f82e8a855116
-  check_passed: false
+  passed: false
   result: ''
   repository: one
 
 two:
   aasm_state: MyString
   commit: MyString
-  check_passed: false
+  passed: false
   result: ''

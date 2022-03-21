@@ -10,7 +10,7 @@ table.table
       td = @check.aasm_state
     tr
       td = t('activerecord.attributes.check.check_passed')
-      td = @check.check_passed
+      td = @check.passed
 - unless @check.result.empty?
   hr
   table.table
