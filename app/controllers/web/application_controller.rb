@@ -4,7 +4,7 @@ class Web::ApplicationController < ApplicationController
   include AuthConcern
   include Pundit
 
-  helper_method :current_user
+  helper_method :current_user, :signed_in?
 
   rescue_from Pundit::NotAuthorizedError, with: :redirect_unauthorized_user
 

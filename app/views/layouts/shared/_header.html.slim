@@ -5,16 +5,13 @@
       ul class='nav nav-pills flex-grow-1 navbar-nav me-auto'
         li.nav-item.me-2
           = link_to t('home.title'), root_path, class: 'nav-link text-dark'
-        - if current_user
+        - if signed_in?
           li.nav-item.me-2
             = link_to t('activerecord.models.repository', count: 2), repositories_path, class: 'nav-link text-dark'
           li.nav-item.me-2
             = link_to t('repository.new_repository'), new_repository_path, class: 'nav-link text-dark'
   ul.nav.nav-pills
-    / - if current_user&.admin?
-    /   li.nav-item.me-2
-    /     = link_to t('admin'), admin_root_path, class: 'nav-link text-dark'
-    - if current_user
+    - if signed_in?
       li.nav-item.me-2
         = link_to t('session.logout'), session_path(session.id), method: :delete, class: 'nav-link text-dark'
     - else
