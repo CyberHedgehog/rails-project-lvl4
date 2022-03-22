@@ -20,7 +20,7 @@ table.table
     - @repository.checks.each do |check|
       tr
         td = link_to check.id, repository_check_path(@repository, check)
-        td = check.state
+        td = check.aasm_state
         td = link_to check.commit, "https://github.com/#{@repository.full_name}/commit/#{check.commit}"
-        td = check.check_passed
+        td = check.passed
         td = check.created_at
