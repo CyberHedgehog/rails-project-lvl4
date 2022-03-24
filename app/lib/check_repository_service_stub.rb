@@ -2,7 +2,7 @@
 
 class CheckRepositoryServiceStub
   def download(_url)
-    ['']
+    [Faker::Crypto.sha1]
   end
 
   def check

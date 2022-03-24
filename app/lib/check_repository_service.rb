@@ -11,6 +11,7 @@ class CheckRepositoryService
 
   def download(url)
     run("git clone #{url} #{@tmp_dir}")
+    run("git rev-parse HEAD #{@tmp_dir}")
   end
 
   def check(language)

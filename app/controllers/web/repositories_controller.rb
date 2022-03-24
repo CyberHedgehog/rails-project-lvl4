@@ -20,6 +20,7 @@ class Web::RepositoriesController < Web::ApplicationController
     repository = Repository.new(
       {
         github_id: repo_data['id'],
+        clone_url: repo_data['clone_url'],
         name: repo_data['name'],
         full_name: repo_data['full_name'],
         language: repo_data['language'],
