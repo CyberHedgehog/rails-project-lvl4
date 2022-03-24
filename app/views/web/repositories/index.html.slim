@@ -4,12 +4,12 @@
     thead
       tr
       tr
-        th scope="col" = t('activerecor.attributes.repository.name')
-        th scope="col" = t('activerecor.attributes.repository.language')
-        th scope="col" = t('activerecor.attributes.repository.created_at')
+        th scope="col" = t('activerecord.attributes.repository.name')
+        th scope="col" = t('activerecord.attributes.repository.language')
+        th scope="col" = t('activerecord.attributes.repository.created_at')
     tbody
       - @repositories.each do |repository|
         tr
-          td = link_to repository.name, repository_path(repository)
+          td = link_to repository.name || repository.github_id, repository_path(repository)
           td = repository.language
           td = repository.created_at

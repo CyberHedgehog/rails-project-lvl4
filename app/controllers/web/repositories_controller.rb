@@ -8,27 +8,20 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def new
     @repository = Repository.new
-    @repositories = client.repos(per_page: 100).pluck(:full_name)
+    github_repositories = client.repos(per_page: 100)
+    @repositories = github_repositories.pluck(:full_name, :id)
   end
 
   def create
-    if repository_params[:full_name].empty?
+    if repository_params[:github_id].nil?
       redirect_to new_repository_path, alert: t('messages.blank_github')
       return
     end
-    repo_data = client.repository(repository_params[:full_name])
-    repository = Repository.new(
-      {
-        github_id: repo_data['id'],
-        clone_url: repo_data['clone_url'],
-        name: repo_data['name'],
-        full_name: repo_data['full_name'],
-        language: repo_data['language'],
-        user_id: current_user.id
-      }
-    )
+
+    repository = current_user.repositories.new(github_id: repository_params[:github_id])
     if repository.save
-      client.create_hook(repository.full_name, 'web', { url: api_checks_url, content_type: 'json' })
+      GetRepositoryDataJob.perform_later(repository)
+      CreateRepositoryHookJob.perform_later(repository)
       redirect_to repository_path(repository)
     else
       redirect_to repositories_path
@@ -42,7 +35,7 @@ class Web::RepositoriesController < Web::ApplicationController
   private
 
   def repository_params
-    params.require(:repository).permit(:full_name)
+    params.require(:repository).permit(:github_id)
   end
 
   def client
