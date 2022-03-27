@@ -22,7 +22,7 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create' do
-    stub_request(:get, @repo['url']).to_return(status: 200, body: load_fixture('files/repo.json'))
+    # stub_request(:get, @repo['url']).to_return(status: 200, body: load_fixture('files/repo.json'))
 
     sign_in(users(:one))
     post repositories_path, params: { repository: { github_id: @repo['id'] } }
