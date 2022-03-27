@@ -8,5 +8,6 @@ class Api::ChecksController < Api::ApplicationController
     repository = Repository.find_by(github_id: params['repository']['id'])
     check = repository.checks.create(commit: params['commits'][0]['id'])
     CheckRepositoryJob.perform_later(check)
+    render status: :ok, json: check.to_json
   end
 end
