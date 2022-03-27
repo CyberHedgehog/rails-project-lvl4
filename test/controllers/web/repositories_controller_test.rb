@@ -26,7 +26,7 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
 
     sign_in(users(:one))
     post repositories_path, params: { repository: { github_id: @repo['id'] } }
-    new_repository = Repository.find_by(full_name: @repo['full_name'])
+    new_repository = Repository.find_by(github_id: @repo['id'])
     assert new_repository
   end
 end
