@@ -11,7 +11,7 @@ table.table
     tr
       td = t('activerecord.attributes.check.check_passed')
       td = @check.passed
-- unless @check.result.nil?
+- if @check.result.present? && !@check.result.empty?
   hr
   table.table
     thead
