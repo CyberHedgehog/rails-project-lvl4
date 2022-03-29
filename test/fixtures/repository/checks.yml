@@ -9,6 +9,7 @@ one:
 
 two:
   aasm_state: MyString
-  commit: MyString
+  commit: a68470097dd5088c9bc745bd3cd7f82e8a855116
   passed: false
   result: ''
+  repository: two

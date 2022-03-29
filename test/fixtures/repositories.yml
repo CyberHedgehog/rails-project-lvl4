@@ -3,11 +3,11 @@
 one:
   github_id: 1
   full_name: user/reponame
-  language: MyString
+  language: JavaScript
   user: one
 
 two:
   github_id: 2
   full_name: user/reponame
-  language: MyString
+  language: Ruby
   user: two

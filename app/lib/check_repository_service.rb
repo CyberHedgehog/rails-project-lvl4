@@ -3,15 +3,12 @@
 class CheckRepositoryService
   def initialize
     @tmp_dir = Dir.mktmpdir
-  end
-
-  def run(command)
-    Open3.popen3(command) { |_stdin, stdout, _stderr, wait_thr| [stdout.read, wait_thr.value] }
+    @bash_runner = ApplicationContainer['bash_runner'].new
   end
 
   def download(url)
-    run("git clone #{url} #{@tmp_dir}")
-    run("git rev-parse HEAD #{@tmp_dir}")
+    @bash_runner.run("git clone #{url} #{@tmp_dir}")
+    @bash_runner.run("git rev-parse HEAD #{@tmp_dir}")
   end
 
   def check(language)
@@ -20,13 +17,13 @@ class CheckRepositoryService
   end
 
   def remove_tmpdir
-    run("rm -rf #{@tmp_dir}")
+    @bash_runner.run("rm -rf #{@tmp_dir}")
   end
 
   private
 
   def check_js
-    result, code = run("npx eslint #{@tmp_dir} --no-eslintrc -c #{Rails.root.join('.eslintrc.yml')} -f json")
+    result, code = @bash_runner.run("npx eslint #{@tmp_dir} --no-eslintrc -c #{Rails.root.join('.eslintrc.yml')} -f json")
     return ['[]', code] if result.empty?
 
     parsed_result = JSON.parse(result).map do |item|
@@ -39,7 +36,7 @@ class CheckRepositoryService
   end
 
   def check_ruby
-    result, code = run("rubocop #{@tmp_dir} --format json")
+    result, code = @bash_runner.run("rubocop #{@tmp_dir} --format json")
     parsed_result = JSON.parse(result)['files'].map do |item|
       messages = item['offenses'].map do |offense|
         { rule: offense['cop_name'], message: offense['message'], line: offense['location']['line'], column: offense['location']['column'] }

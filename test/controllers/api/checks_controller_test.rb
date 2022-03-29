@@ -11,7 +11,7 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
     hook_commits = JSON.parse(load_fixture('files/api/commits.json'))
 
     post api_checks_path hook_commits
-    check = Repository::Check.find_by(commit: '04a4f4')
+    check = Repository::Check.find_by(commit: '')
     assert check
     assert_response :success
   end
