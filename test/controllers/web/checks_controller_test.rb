@@ -8,7 +8,7 @@ class Web::ChecksControllerTest < ActionDispatch::IntegrationTest
     repository = repositories(:one)
     sign_in(user)
     post repository_checks_path(repository)
-    assert_equal repository.checks.last.commit, ''
+    assert_equal repository.checks.last.commit, '04a4f4'
   end
 
   test 'should show check' do

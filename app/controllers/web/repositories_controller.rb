@@ -21,7 +21,7 @@ class Web::RepositoriesController < Web::ApplicationController
     repository = current_user.repositories.new(github_id: repository_params[:github_id])
     if repository.save
       UpdateRepositoryDataJob.perform_later(repository)
-      CreateRepositoryHookJob.perform_later(repository)
+      CreateRepositoryHookJob.perform_later(repository, api_checks_url)
       redirect_to repository_path(repository)
     else
       redirect_to repositories_path
