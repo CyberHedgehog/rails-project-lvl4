@@ -4,7 +4,7 @@ class UpdateRepositoryDataJob < ApplicationJob
   queue_as :default
 
   def perform(repository)
-    client = Octokit::Client.new(access_token: repository.user.token)
+    client = ApplicationContainer['octokit_client'].new(access_token: repository.user.token)
     repo_data = client.repository(repository.github_id)
     repository.update(
       {

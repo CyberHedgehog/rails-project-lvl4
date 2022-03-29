@@ -8,7 +8,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def new
     @repository = Repository.new
-    github_repositories = client.repos(per_page: 100)
+    github_repositories = client.repos
     @repositories = github_repositories.pluck(:full_name, :id)
   end
 
@@ -39,7 +39,7 @@ class Web::RepositoriesController < Web::ApplicationController
   end
 
   def client
-    @client = Octokit::Client.new(access_token: current_user.token, per_page: 100)
+    @client = ApplicationContainer['octokit_client'].new(access_token: current_user.token, per_page: 100)
   end
 
   def authorize_user
