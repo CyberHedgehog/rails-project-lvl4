@@ -3,7 +3,7 @@
 class Web::ChecksController < Web::ApplicationController
   def create
     repo = Repository.find_by(id: params[:repository_id])
-    check = repo.checks.new(commit: '')
+    check = repo.checks.new(commit: '', passed: false)
     if check.save
       CheckRepositoryJob.perform_later(check)
     end

@@ -9,7 +9,7 @@ class Api::ChecksController < Api::ApplicationController
       return
     end
 
-    check = repository.checks.new(commit: '')
+    check = repository.checks.new(commit: '', passed: false)
     if check.save
       CheckRepositoryJob.perform_later(check)
       render json: check.to_json
