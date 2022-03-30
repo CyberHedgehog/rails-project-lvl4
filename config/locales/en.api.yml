@@ -1,0 +1,6 @@
+en:
+  api:
+    check:
+      repository_not_found: 'Repository not found'
+      create:
+        error: 'Check not created'
