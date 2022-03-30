@@ -12,8 +12,8 @@ class CheckRepositoryService
   end
 
   def check(language)
-    return check_js if language == 'JavaScript'
-    return check_ruby if language == 'Ruby'
+    return check_js if language == 'javascript'
+    return check_ruby if language == 'ruby'
   end
 
   def remove_tmpdir

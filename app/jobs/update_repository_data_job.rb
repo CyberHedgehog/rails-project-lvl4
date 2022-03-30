@@ -11,7 +11,7 @@ class UpdateRepositoryDataJob < ApplicationJob
         clone_url: repo_data['clone_url'],
         name: repo_data['name'],
         full_name: repo_data['full_name'],
-        language: repo_data['language']
+        language: repo_data['language'].downcase
       }
     )
   end

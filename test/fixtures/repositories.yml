@@ -2,12 +2,13 @@
 
 one:
   github_id: 1
-  full_name: user/reponame
-  language: JavaScript
+  name: js
+  full_name: user/js
+  language: javascript
   user: one
 
 two:
   github_id: 2
   full_name: user/reponame
-  language: Ruby
+  language: ruby
   user: two
