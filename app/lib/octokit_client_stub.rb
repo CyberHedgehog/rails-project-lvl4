@@ -6,8 +6,8 @@ class OctokitClientStub
   end
 
   def repos
-    repo_data = File.read(Rails.root.join('test/fixtures/files/repo.json'))
-    [JSON.parse(repo_data)]
+    repos_data = File.read(Rails.root.join('test/fixtures/files/repo.json'))
+    [JSON.parse(repos_data)]
   end
 
   def create_hook(_repo, _name, _config)
@@ -19,6 +19,7 @@ class OctokitClientStub
   end
 
   def repository(_github_id)
-    File.read(Rails.root.join('test/fixtures/files/repo.json'))
+    repo_data = File.read(Rails.root.join('test/fixtures/files/repo.json'))
+    JSON.parse(repo_data)
   end
 end
