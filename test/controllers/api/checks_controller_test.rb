@@ -12,7 +12,7 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     post api_checks_path hook_commits
     check = Repository::Check.find_by(commit: '')
-    assert check
+    assert check.passed
     assert_response :success
   end
 end
