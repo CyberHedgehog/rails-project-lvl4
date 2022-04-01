@@ -2,9 +2,9 @@
 
 one:
   github_id: 1
-  name: js
-  full_name: user/js
-  language: javascript
+  name: hexlet-cv
+  full_name: Hexlet/hexlet-cv
+  language: ruby
   user: one
 
 two:

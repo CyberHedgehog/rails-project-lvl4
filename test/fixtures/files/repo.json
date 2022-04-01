@@ -1,7 +1,7 @@
 {
   "id": 1,
   "name": "reponame",
-  "full_name": "user/reponame",
+  "full_name": "Hexlet/hexlet-cv",
   "url": "https://api.github.com/repos/user/reponame",
   "clone_url": "https://api.github.com/repos/user/reponame.git",
   "language": "Ruby"
