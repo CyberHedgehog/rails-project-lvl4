@@ -9,7 +9,7 @@ class Web::RepositoriesController < Web::ApplicationController
   def new
     @repository = Repository.new
     github_repositories = client.repos
-    @repositories = github_repositories.pluck(:full_name, :id)
+    @repositories = github_repositories.reject { |repo| repo[:language].nil? }.pluck(:full_name, :id)
   end
 
   def create
