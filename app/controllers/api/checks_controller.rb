@@ -12,7 +12,7 @@ class Api::ChecksController < Api::ApplicationController
     check = repository.checks.new(commit: '', passed: false)
     if check.save
       CheckRepositoryJob.perform_later(check)
-      pp check
+      pp '!!!!!Check', check
       render json: check.to_json
     else
       render json: { error: t('api.check.create.error') }
