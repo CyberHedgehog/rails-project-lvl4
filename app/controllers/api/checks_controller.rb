@@ -3,7 +3,7 @@
 class Api::ChecksController < Api::ApplicationController
   skip_before_action :verify_authenticity_token
   def create
-    repository = Repository.find_by(github_id: params['repository']['id'])
+    repository = Repository.find_by(full_name: params['repository']['full_name'])
     if repository.nil?
       pp 'repository not found', repository
       render json: { error: t('api.check.repository_not_found') }
