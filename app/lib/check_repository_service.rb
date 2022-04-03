@@ -37,6 +37,8 @@ class CheckRepositoryService
 
   def check_ruby
     result, code = @bash_runner.run("rubocop #{@tmp_dir} --format json")
+    return ['[]', code] if result.empty?
+
     parsed_result = JSON.parse(result)['files'].map do |item|
       messages = item['offenses'].map do |offense|
         { rule: offense['cop_name'], message: offense['message'], line: offense['location']['line'], column: offense['location']['column'] }
