@@ -13,5 +13,6 @@ class CheckRepositoryJob < ApplicationJob
     RepositoryCheckMailer.with(check: check).report_failed_check.deliver_later unless code.zero?
     check.finish!
     checker.remove_tmpdir
+    pp check
   end
 end
