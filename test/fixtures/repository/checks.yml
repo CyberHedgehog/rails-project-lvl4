@@ -3,13 +3,13 @@
 one:
   aasm_state: MyString
   commit: f68470097dd5088c9bc745bd3cd7f82e8a855116
-  passed: false
+  passed: true
   result: ''
   repository: one
 
 two:
   aasm_state: MyString
   commit: a68470097dd5088c9bc745bd3cd7f82e8a855116
-  passed: false
+  passed: true
   result: ''
   repository: two
