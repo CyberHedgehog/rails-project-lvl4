@@ -8,7 +8,7 @@ class CheckRepositoryService
 
   def download(url)
     @bash_runner.run("git clone #{url} #{@tmp_dir}")
-    @bash_runner.run("git rev-parse HEAD #{@tmp_dir}")
+    @bash_runner.run("git -C #{@tmp_dir} rev-parse HEAD")
   end
 
   def check(language)
