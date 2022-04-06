@@ -1,6 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  nickname: Hexlet
+  name: HexletUser
+  email: mainuser@hexlet.io
+  image_url: http://hexlet.com/users/main/img.png
+  token: abc123
+  uid: uid123
+  provider: github
+
+two:
   nickname: jd
   name: John Doe
   email: jd@mail.ru

@@ -10,6 +10,6 @@ one:
 two:
   github_id: 2
   name: ruby
-  full_name: user/reponame
+  full_name: jd/reponame
   language: ruby
   user: two
