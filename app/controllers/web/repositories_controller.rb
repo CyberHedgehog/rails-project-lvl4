@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Web::RepositoriesController < Web::ApplicationController
-  before_action :authorize_user
+  before_action :authorize_user, except: :show
   def index
     @repositories = current_user.repositories
   end
@@ -30,6 +30,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def show
     @repository = Repository.find(params[:id])
+    authorize @repository
   end
 
   private

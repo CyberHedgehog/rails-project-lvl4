@@ -13,6 +13,21 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should show' do
+    user = users(:one)
+    sign_in(user)
+    get repository_path(user.repositories.first)
+    assert_response :success
+  end
+
+  test 'should not show if not owner' do
+    user = users(:one)
+    second_user = users(:two)
+    sign_in(user)
+    get repository_path(second_user.repositories.first)
+    assert_redirected_to :root
+  end
+
   test 'should get new' do
     sign_in(users(:one))
     get new_repository_path

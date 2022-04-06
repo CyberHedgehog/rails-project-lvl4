@@ -10,7 +10,7 @@ class RepositoryPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present?
+    user.present? && user == record.user
   end
 
   def create?
