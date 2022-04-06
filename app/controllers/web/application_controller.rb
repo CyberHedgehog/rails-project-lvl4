@@ -12,6 +12,6 @@ class Web::ApplicationController < ApplicationController
 
   def redirect_unauthorized_user
     flash.alert = t 'messages.not_authorized'
-    redirect_to request.referer || root_path
+    redirect_to root_path
   end
 end

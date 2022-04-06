@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Web::RepositoriesController < Web::ApplicationController
-  before_action :authorize_user, except: :show
+  before_action authorize: :repository, except: :show
   def index
     @repositories = current_user.repositories
   end
@@ -41,9 +41,5 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def client
     @client = ApplicationContainer['octokit_client'].new(access_token: current_user.token, per_page: 100)
-  end
-
-  def authorize_user
-    authorize :repository
   end
 end
