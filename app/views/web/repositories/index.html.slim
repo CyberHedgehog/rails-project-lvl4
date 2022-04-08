@@ -13,3 +13,4 @@
           td = link_to repository.name || repository.github_id, repository_path(repository)
           td = repository.language
           td = repository.created_at
+  = paginate @repositories

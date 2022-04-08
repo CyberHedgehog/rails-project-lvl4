@@ -3,7 +3,7 @@
 class Web::RepositoriesController < Web::ApplicationController
   before_action authorize: :repository, except: :show
   def index
-    @repositories = current_user.repositories
+    @repositories = current_user.repositories.page params[:page]
   end
 
   def new
