@@ -10,7 +10,8 @@ class Web::RepositoriesController < Web::ApplicationController
     @repository = Repository.new
     @repositories = Rails.cache.fetch("#{current_user.id}/repositories", expires_in: 1.hour) do
       repos = client.repos
-      repos.filter { |repo| Repository.language.values.include? repo[:language]&.downcase }.pluck(:full_name, :id)
+      available_languages = Repository.language.values
+      repos.filter { |repo| available_languages.include? repo[:language]&.downcase }.pluck(:full_name, :id)
     end
   end
 
