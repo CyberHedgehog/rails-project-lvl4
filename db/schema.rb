@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_191313) do
     t.string "commit"
     t.boolean "passed"
     t.string "result"
-    t.integer "repository_id"
+    t.integer "repository_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["repository_id"], name: "index_repository_checks_on_repository_id"
@@ -48,4 +48,5 @@ ActiveRecord::Schema.define(version: 2022_02_21_191313) do
   end
 
   add_foreign_key "repositories", "users"
+  add_foreign_key "repository_checks", "repositories"
 end

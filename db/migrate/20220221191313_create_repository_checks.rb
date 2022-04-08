@@ -5,7 +5,7 @@ class CreateRepositoryChecks < ActiveRecord::Migration[6.1]
       t.string :commit
       t.boolean :passed
       t.string :result
-      t.references :repository
+      t.references :repository, null: false, foreign_key: true
 
       t.timestamps
     end
