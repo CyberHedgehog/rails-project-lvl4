@@ -8,8 +8,10 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def new
     @repository = Repository.new
-    github_repositories = client.repos
-    @repositories = github_repositories.reject { |repo| repo[:language].nil? }.pluck(:full_name, :id)
+    @repositories = Rails.cache.fetch("#{current_user.id}/repositories", expires_in: 1.hour) do
+      repos = client.repos
+      repos.filter { |repo| Repository.language.values.include? repo.language&.downcase }.pluck(:full_name, :id)
+    end
   end
 
   def create
