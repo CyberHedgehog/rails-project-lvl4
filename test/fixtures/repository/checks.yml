@@ -4,12 +4,12 @@ one:
   aasm_state: finished
   commit: f68470097dd5088c9bc745bd3cd7f82e8a855116
   passed: true
-  result: ''
+  result: '[]'
   repository: one
 
 two:
   aasm_state: finished
   commit: a68470097dd5088c9bc745bd3cd7f82e8a855116
   passed: true
-  result: ''
+  result: '[]'
   repository: two

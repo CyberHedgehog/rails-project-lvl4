@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
-class Web::ChecksController < Web::ApplicationController
+class Web::Repositories::ChecksController < Web::ApplicationController
   def create
     @repo = Repository.find_by(id: params[:repository_id])
-    check = @repo.checks.new(commit: '', passed: false)
+    check = @repo.checks.new
     authorize check
     if check.save
       CheckRepositoryJob.perform_later(check)
+      redirect_to repository_check_path(@repo, check)
+    else
+      redirect_to repository_path(@repo), alert: t('check.create.error.not_created')
     end
-    redirect_to repository_path(@repo), alert: t('repository.create.error.not_created')
   end
 
   def show
     @check = Repository::Check.find_by(id: params[:id])
     authorize @check.repository
-    render 'web/repositories/checks/show'
   end
 end

@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_191313) do
   create_table "repository_checks", force: :cascade do |t|
     t.string "aasm_state"
     t.string "commit"
-    t.boolean "passed"
+    t.boolean "passed", default: false
     t.string "result"
     t.integer "repository_id", null: false
     t.datetime "created_at", precision: 6, null: false
