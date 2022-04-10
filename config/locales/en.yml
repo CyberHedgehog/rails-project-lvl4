@@ -40,6 +40,5 @@ en:
   messages:
     not_authorized: User not authorized
     successfull_login: Successfull login 
-    blank_github: Github can not be blank
   auth:
     success: Successful login!

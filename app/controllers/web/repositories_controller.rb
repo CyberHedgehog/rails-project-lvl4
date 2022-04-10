@@ -17,7 +17,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def create
     if repository_params[:github_id].nil?
-      redirect_to new_repository_path, alert: t('messages.blank_github')
+      redirect_to new_repository_path, alert: t('repository.create.error.blank_github')
       return
     end
 
@@ -27,7 +27,7 @@ class Web::RepositoriesController < Web::ApplicationController
       CreateRepositoryHookJob.perform_later(repository, api_checks_url)
       redirect_to repository_path(repository)
     else
-      redirect_to repositories_path
+      redirect_to repositories_path, alert: t('repository.create.error.not_created')
     end
   end
 

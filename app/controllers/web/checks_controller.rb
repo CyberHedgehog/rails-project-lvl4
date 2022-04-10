@@ -8,7 +8,7 @@ class Web::ChecksController < Web::ApplicationController
     if check.save
       CheckRepositoryJob.perform_later(check)
     end
-    redirect_to repository_path(@repo)
+    redirect_to repository_path(@repo), alert: t('repository.create.error.not_created')
   end
 
   def show

@@ -1,3 +1,7 @@
 en:
   repository:
     new_repository: New repository
+    create:
+      error:
+        blank_github: Github can not be blank
+        not_created: Repository was not created. Something went wrong
