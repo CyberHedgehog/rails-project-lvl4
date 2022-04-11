@@ -9,7 +9,6 @@ class ActiveSupport::TestCase
   setup do
     queue_adapter.perform_enqueued_jobs = true
     queue_adapter.perform_enqueued_at_jobs = true
-    Rails.application.routes.default_url_options = { host: 'http://example.com' }
   end
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
