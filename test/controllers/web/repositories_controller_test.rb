@@ -38,6 +38,6 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     sign_in(users(:one))
     post repositories_path, params: { repository: { github_id: @repo['id'] } }
     new_repository = Repository.find_by(github_id: @repo['id'])
-    assert new_repository
+    assert new_repository.language, @repo['language']
   end
 end
