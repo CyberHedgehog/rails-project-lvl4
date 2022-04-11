@@ -24,7 +24,7 @@ table.table
         tr
           - if item['messages'].any?
             td colspan='3' class='table-secondary'
-              = item['file'].split('/').drop(3).join('/')
+              = item['file']
               - item['messages'].each do |message|
                 tr
                   td = message['message']
