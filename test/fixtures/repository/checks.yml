@@ -4,7 +4,7 @@ one:
   aasm_state: finished
   commit: f68470097dd5088c9bc745bd3cd7f82e8a855116
   passed: true
-  result: '[]'
+  result: null
   repository: one
 
 two:
