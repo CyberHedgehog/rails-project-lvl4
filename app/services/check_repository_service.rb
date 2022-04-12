@@ -25,8 +25,12 @@ class CheckRepositoryService
   end
 
   def lint(language)
-    return lint_js if language == 'javascript'
-    return lint_ruby if language == 'ruby'
+    linters = { javascript: :lint_js, ruby: :lint_ruby }
+    if language.nil? || !linters.key?(language.to_sym)
+      return ['', 1]
+    end
+
+    send(linters[language.to_sym])
   end
 
   def lint_js
