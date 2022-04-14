@@ -22,10 +22,7 @@ module RailsProjectLvl4
     # config.eager_load_paths << Rails.root.join("extras")
     if Rails.env.development?
       config.hosts << ENV['BASE_URL']
-      routes.default_url_options = { host: ENV['BASE_URL'] }
     end
-    if Rails.env.test?
-      routes.default_url_options = { host: 'http://example.com' }
-    end
+    routes.default_url_options = { host: ENV['BASE_URL'] }
   end
 end
