@@ -23,7 +23,6 @@ module RailsProjectLvl4
     if Rails.env.development?
       config.hosts << ENV['BASE_URL']
     end
-    host = Rails.env.test? ? 'http://example.com' : ENV['BASE_URL']
-    routes.default_url_options = { host: host }
+    routes.default_url_options = { host: ENV['BASE_URL'] || 'http://example.com' }
   end
 end

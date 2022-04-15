@@ -2,17 +2,22 @@
 
 require 'test_helper'
 
-class Web::ChecksControllerTest < ActionDispatch::IntegrationTest
+class Web::Repositories::ChecksControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users(:one)
+  end
+
   test 'shold create check' do
-    user = users(:one)
     repository = repositories(:one)
-    sign_in(user)
+    sign_in(@user)
     post repository_checks_path(repository)
-    assert_equal repository.checks.last.commit, ''
+    new_check = repository.checks.last
+    assert_equal new_check.commit, ''
+    assert_redirected_to repository_check_path(repository, new_check)
   end
 
   test 'should show check' do
-    sign_in(users(:one))
+    sign_in(@user)
     repository = repositories(:one)
     check = repository.checks.first
     get repository_check_path(repository.id, check.id)
@@ -20,15 +25,14 @@ class Web::ChecksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'shold not create check if not owner' do
-    user = users(:one)
     repository = repositories(:two)
-    sign_in(user)
+    sign_in(@user)
     post repository_checks_path(repository)
     assert_redirected_to root_path
   end
 
   test 'should not show check if not owner' do
-    sign_in(users(:one))
+    sign_in(@user)
     repository = repositories(:two)
     check = repository.checks.first
     get repository_check_path(repository.id, check.id)
