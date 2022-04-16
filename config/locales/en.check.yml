@@ -1,5 +1,7 @@
 en:
   check:
+    show:
+      back_to_repo: Back to repository
     create:
       error:
         not_created: Check was not created. Something went wrong

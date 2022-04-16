@@ -1,4 +1,6 @@
 .mb-4
+  .mb-4
+    = link_to t('check.show.back_to_repo'), repository_path(@check.repository)
   h2 = "Check ##{@check.id}"
 table.table
   tbody
