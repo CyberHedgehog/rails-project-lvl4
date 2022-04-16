@@ -13,7 +13,7 @@ table.table
     tr
       td = t('activerecord.attributes.check.check_passed')
       td = @check.passed
-- if @check.finished? && !@check.result.nil?
+- if @check.finished? && @check.result.present?
   hr
   table.table
     thead
