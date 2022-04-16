@@ -6,6 +6,6 @@ class Repository::CheckPolicy < ApplicationPolicy
   end
 
   def create?
-    user.present? && user == record.repository.user
+    show?
   end
 end

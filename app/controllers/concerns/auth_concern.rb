@@ -16,4 +16,11 @@ module AuthConcern
   def signed_in?
     current_user.present?
   end
+
+  def authenticate_user!
+    return if signed_in?
+
+    flash.alert = t 'messages.not_logged_in'
+    redirect_to root_path
+  end
 end

@@ -39,6 +39,9 @@ en:
     logout: Logout
   messages:
     not_authorized: User not authorized
+    not_logged_in: User not logged in
     successfull_login: Successfull login 
+    successfull_logout: Successfull logout
   auth:
     success: Successful login!
+    error: 'Authentication error'
