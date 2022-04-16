@@ -6,7 +6,7 @@ class Web::Repositories::ChecksController < Web::ApplicationController
   def create
     @repo = Repository.find_by(id: params[:repository_id])
     check = @repo.checks.new
-    authorize check
+    authorize @repo, :show?
     if check.save
       CheckRepositoryJob.perform_later(check)
       redirect_to repository_check_path(@repo, check), notice: t('check.create.success')
@@ -17,6 +17,6 @@ class Web::Repositories::ChecksController < Web::ApplicationController
 
   def show
     @check = Repository::Check.find_by(id: params[:id])
-    authorize @check
+    authorize @check.repository, :show?
   end
 end
