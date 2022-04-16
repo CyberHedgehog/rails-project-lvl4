@@ -9,7 +9,7 @@ class Web::Repositories::ChecksController < Web::ApplicationController
     authorize check
     if check.save
       CheckRepositoryJob.perform_later(check)
-      redirect_to repository_check_path(@repo, check)
+      redirect_to repository_check_path(@repo, check), notice: t('check.create.success')
     else
       redirect_to repository_path(@repo), alert: t('check.create.error.not_created')
     end

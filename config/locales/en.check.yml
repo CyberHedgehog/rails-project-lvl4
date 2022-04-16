@@ -3,5 +3,6 @@ en:
     show:
       back_to_repo: Back to repository
     create:
+      success: Check created successfully
       error:
         not_created: Check was not created. Something went wrong

@@ -25,7 +25,7 @@ class Web::RepositoriesController < Web::ApplicationController
     if repository.save
       UpdateRepositoryDataJob.perform_later(repository)
       CreateRepositoryHookJob.perform_later(repository)
-      redirect_to repository_path(repository)
+      redirect_to repository_path(repository), notice: t('repository.create.success')
     else
       redirect_to repositories_path, alert: t('repository.create.error.not_created')
     end
