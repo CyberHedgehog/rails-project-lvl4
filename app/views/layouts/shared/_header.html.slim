@@ -13,6 +13,10 @@
   ul.nav.nav-pills
     - if signed_in?
       li.nav-item.me-2
+        .nav-link.text-dark = current_user.email
+      li.nav-item.me-2
+        img.rounded-circle.align-middle src = current_user.image_url
+      li.nav-item.me-2
         = link_to t('session.logout'), session_path(session.id), method: :delete, class: 'nav-link text-dark'
     - else
       li.nav-item.me-2
