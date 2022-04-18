@@ -10,6 +10,12 @@ class CheckRepositoryService
     check.check!
     repository = check.repository
     rev, = download(repository.clone_url)
+    if repository.language.nil?
+      check.update(passed: false)
+      check.finish!
+      return
+    end
+
     linter = "Linters::#{repository.language.capitalize}".constantize.new
     result, code = linter.run(@tmp_dir)
     check.update(commit: rev[0..5], result: result, passed: code.zero?)
